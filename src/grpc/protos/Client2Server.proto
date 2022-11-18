@@ -15,38 +15,27 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "io.grpc.examples.helloworld";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
+option java_package = "io.zklbs.Client2Server";
+option java_outer_classname = "Client2ServerProto";
+option objc_class_prefix = "CS";
 
-package helloworld;
+package Client2Server;
 
 // The greeting service definition.
-service Greeter {
+service CSGreeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc CSCommunication (CSRequest) returns (CSReply) {}
 }
 
-// // The request message containing the user's name.
-// message HelloRequest {
-//   string name = 1;
-//   string vk = 2;
-//   string proof = 3;
-// }
-
-// // The response message containing the greetings
-// message HelloReply {
-//   string message = 1;
-// }
 // The request message containing the user's name.
-message HelloRequest {
+message CSRequest {
   string pk = 1;
   string latitude = 2;
   string longitude = 3;
 }
 
 // The response message containing the greetings
-message HelloReply {
+message CSReply {
   string rand = 1;
   string time = 2;
 }

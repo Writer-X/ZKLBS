@@ -23,7 +23,6 @@ public:
 
             std::string ip;
             ip = get_ip_from_endpoint(str);
-            // std::cout << ip << std::endl;
             return ip;
         }
         return "";

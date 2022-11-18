@@ -51,10 +51,32 @@ public:
                                                                             pb.auxiliary_input());
         proof_json = ethsnarks::proof_to_json(proof, primary_input);
     }
+    void randProve(int rand)
+    {
+        ppT::init_public_params();
+        ProtoboardT pb;
+        auto var_inputs = make_var_array(pb, "input",
+                                         {rand});
+        Poseidon128<1, 1> the_gadget(pb, var_inputs, "gadget");
+        the_gadget.generate_r1cs_witness();
+        pb.set_input_sizes(1);
+        the_gadget.generate_r1cs_constraints();
 
+        auto constraints = pb.get_constraint_system();
+        auto keypair = libsnark::r1cs_gg_ppzksnark_zok_generator<ppT>(constraints);
+
+        vk_json = vk2json(keypair.vk);
+
+        // auto proving_key = keypair.pk;
+        auto primary_input = pb.primary_input();
+        auto proof = libsnark::r1cs_gg_ppzksnark_zok_prover<ethsnarks::ppT>(keypair.pk,
+                                                                            primary_input,
+                                                                            pb.auxiliary_input());
+        proof_json = ethsnarks::proof_to_json(proof, primary_input);
+    }
 private:
-    int pk;
-    int rand;
+    // std::string pk;
+    // std::string rand;
     int time;
     std::pair<long int, long int> coordinate;
 

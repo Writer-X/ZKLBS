@@ -27,11 +27,11 @@ private:
         static char str[10000000];
         strcpy(str, "");
         CURL *curl = curl_easy_init();
-        std::cout << ip << std::endl;
+        std::cout << "From coordinateUtil ip: " << ip << std::endl;
 
         std::string url = "http://api.ipstack.com/" + ip +
                           "?access_key=95cff80ad8e20bd78f08891cb7e0bae9";
-        std::cout << url << std::endl;
+        std::cout << "From coordinateUtil ur;: " << url << std::endl;
         const char *url_char = url.c_str();
 
         CURLcode res_ip;
