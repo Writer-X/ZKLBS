@@ -1,2 +1,0 @@
-/usr/bin/ar qc libethsnarks_common.a CMakeFiles/ethsnarks_common.dir/ethsnarks_common_autogen/mocs_compilation.cpp.o CMakeFiles/ethsnarks_common.dir/export.cpp.o CMakeFiles/ethsnarks_common.dir/import.cpp.o CMakeFiles/ethsnarks_common.dir/stubs.cpp.o CMakeFiles/ethsnarks_common.dir/utils.cpp.o CMakeFiles/ethsnarks_common.dir/crypto/sha256.c.o CMakeFiles/ethsnarks_common.dir/crypto/blake2b.c.o
-/usr/bin/ranlib libethsnarks_common.a

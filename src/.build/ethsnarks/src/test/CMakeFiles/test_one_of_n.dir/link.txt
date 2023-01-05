@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/test_one_of_n.dir/test_one_of_n_autogen/mocs_compilation.cpp.o CMakeFiles/test_one_of_n.dir/test_one_of_n.cpp.o -o test_one_of_n  ../gadgets/libethsnarks_gadgets.a ../libethsnarks_common.a ../../libff.a -lgmp ../../depends/libSHA3IUF.a 
