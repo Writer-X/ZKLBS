@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcs_grpc_proto.a CMakeFiles/cs_grpc_proto.dir/Client2Server.grpc.pb.cc.o CMakeFiles/cs_grpc_proto.dir/Client2Server.pb.cc.o
-/usr/bin/ranlib libcs_grpc_proto.a
