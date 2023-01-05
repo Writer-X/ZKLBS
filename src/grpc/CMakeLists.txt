@@ -105,7 +105,7 @@ add_subdirectory(../utils ../../.build/utils EXCLUDE_FROM_ALL)
   
 # Targets greeter_[async_](client|server)
 foreach(_target
-greeterServer greeterClient greeterVerifier)
+greeterServer greeterVerifier)
 add_executable(${_target} "${_target}.cpp")
 target_link_libraries(${_target}
   PoseidonClient
@@ -113,6 +113,26 @@ target_link_libraries(${_target}
   CoordinateUtil
   TimeUtil
   TypeUtil
+  RandomUtil
+  cs_grpc_proto
+  cv_grpc_proto
+  sv_grpc_proto
+  ${_REFLECTION}
+  ${_GRPC_GRPCPP}
+  ${_PROTOBUF_LIBPROTOBUF})
+endforeach()
+
+# Targets greeter_[async_](client|server)
+foreach(_target
+greeterClient)
+add_library(${_target} "${_target}.cpp")
+target_link_libraries(${_target}
+  PoseidonClient
+  PoseidonServer
+  CoordinateUtil
+  TimeUtil
+  TypeUtil
+  RandomUtil
   cs_grpc_proto
   cv_grpc_proto
   sv_grpc_proto

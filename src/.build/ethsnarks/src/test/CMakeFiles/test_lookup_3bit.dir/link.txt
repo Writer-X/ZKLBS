@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/test_lookup_3bit.dir/test_lookup_3bit_autogen/mocs_compilation.cpp.o CMakeFiles/test_lookup_3bit.dir/test_lookup_3bit.cpp.o -o test_lookup_3bit  ../gadgets/libethsnarks_gadgets.a ../libethsnarks_common.a ../../libff.a -lgmp ../../depends/libSHA3IUF.a 

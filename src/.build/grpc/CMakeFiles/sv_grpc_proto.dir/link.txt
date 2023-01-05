@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsv_grpc_proto.a CMakeFiles/sv_grpc_proto.dir/sv_grpc_proto_autogen/mocs_compilation.cpp.o CMakeFiles/sv_grpc_proto.dir/Server2Verifier.grpc.pb.cc.o CMakeFiles/sv_grpc_proto.dir/Server2Verifier.pb.cc.o
+/usr/bin/ranlib libsv_grpc_proto.a

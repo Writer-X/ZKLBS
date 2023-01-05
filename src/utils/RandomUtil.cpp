@@ -1,45 +1,38 @@
-#include <string>
-#include <iostream>
+#include "RandomUtil.h"
 
-class RandomUtil
+std::string RandomUtil::generateRandomString(int length)
 {
-public:
-    std::string generateRandomString(int length)
+    int flag = 0;
+    std::string result = "";
+    int i = 0;
+    while (i < length)
     {
-        int flag = 0;
-        std::string result = "";
-        int i = 0;
-        while (i < length)
+        flag = rand() % 3;
+        switch (flag)
         {
-            flag = rand() % 3;
-            switch (flag)
-            {
-            case 0:
-                result += 'A' + rand() % 26;
-                break;
-            case 1:
-                result += 'a' + rand() % 26;
-            default:
-                result += '0' + rand() % 10;
-                break;
-            }
-            i++;
-        }
-        //result += '\0';
-        return result;
-    }
-    std::string generateRandomIntString(int length)
-    {
-        int flag = 0;
-        std::string result = "";
-        int i = 0;
-        while (i < length)
-        {
-
+        case 0:
+            result += 'A' + rand() % 26;
+            break;
+        case 1:
+            result += 'a' + rand() % 26;
+        default:
             result += '0' + rand() % 10;
-            i++;
+            break;
         }
-        //result += '\0';
-        return result;
+        i++;
     }
-};
+    return result;
+}
+std::string RandomUtil::generateRandomIntString(int length)
+{
+    int flag = 0;
+    std::string result = "";
+    int i = 0;
+    while (i < length)
+    {
+
+        result += '0' + rand() % 10;
+        i++;
+    }
+    return result;
+}

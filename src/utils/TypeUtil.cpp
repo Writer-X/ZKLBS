@@ -1,15 +1,10 @@
-#include <stdio.h>
-#include <string>
+#include "TypeUtil.h"
 
-class TypeUtil
+int TypeUtil::String2Int(std::string str)
 {
-public:
-    int String2Int(std::string str)
-    {
-        return stoi(str);
-    }
-    std::string Int2String(int i)
-    {
-        return std::to_string(i);
-    }
-};
+    return stoi(str);
+}
+std::string TypeUtil::Int2String(int i)
+{
+    return std::to_string(i);
+}

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/verify.dir/verify_autogen/mocs_compilation.cpp.o CMakeFiles/verify.dir/verify.cpp.o -o verify  gadgets/libethsnarks_gadgets.a libethsnarks_common.a ../libff.a -lgmp ../depends/libSHA3IUF.a 
