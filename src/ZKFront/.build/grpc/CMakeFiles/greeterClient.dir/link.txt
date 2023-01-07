@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgreeterClient.a CMakeFiles/greeterClient.dir/greeterClient_autogen/mocs_compilation.cpp.o CMakeFiles/greeterClient.dir/greeterClient.cpp.o
-/usr/bin/ranlib libgreeterClient.a

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libethsnarks_pinocchio.a CMakeFiles/ethsnarks_pinocchio.dir/ethsnarks_pinocchio_autogen/mocs_compilation.cpp.o CMakeFiles/ethsnarks_pinocchio.dir/circuit_reader.cpp.o
-/usr/bin/ranlib libethsnarks_pinocchio.a
