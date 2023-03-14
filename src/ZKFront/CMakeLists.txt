@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(ZKLBS LANGUAGES CXX)
 
-set(CMAKE_PREFIX_PATH "/home/xt/Qt5.14.2/5.14.2/gcc_64")
+# set(CMAKE_PREFIX_PATH "/home/xt/Qt5.14.2/5.14.2/gcc_64")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

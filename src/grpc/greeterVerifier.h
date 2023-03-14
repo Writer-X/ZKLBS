@@ -26,35 +26,44 @@ using Server2Verifier::SVRequest;
 
 std::string h;
 std::string randh;
+bool inUse = false;
 
 class GreeterServiceImpl final : public CVGreeter::Service
 {
     Status CVCommunication(ServerContext *context, const CVRequest *request,
                            CVReply *reply) override
     {
-        PoseidonServer poseidonServer2;
-        auto rand_verify = poseidonServer2.verify(request->randvk(), request->randproof(), randh);
-        std::cout << "From verifier rand_verify: " << rand_verify << std::endl;
-        if (!rand_verify)
+        if(inUse)
         {
-            reply->set_answer("Rand Verify Fail, Please Contact Service");
-        }
-        else
-        {
-            std::cout << "From verifier VerifyRand: Rand verify Success" << std::endl;
-        }
+            PoseidonServer poseidonServer2;
+            auto rand_verify = poseidonServer2.verify(request->randvk(), request->randproof(), randh);
+            std::cout << "From verifier rand_verify: " << rand_verify << std::endl;
+            if (!rand_verify)
+            {
+                reply->set_answer("Rand Verify Fail, Please Contact Service");
+            }
+            else
+            {
+                std::cout << "From verifier VerifyRand: Rand verify Success" << std::endl;
+            }
 
-        std::cout << "From client proof: " << request->proof() << std::endl;
-        std::cout << "From client vk: " << request->vk() << std::endl;
-        PoseidonServer poseidonServer;
-        std::cout << "From verifier h: " << h << std::endl;
-        auto if_verify = poseidonServer.verify(request->vk(), request->proof(), h);
-        std::cout << "From verifier if_verify: " << if_verify << std::endl;
-        if (if_verify)
-            reply->set_answer("Verify Success");
+            std::cout << "From client proof: " << request->proof() << std::endl;
+            std::cout << "From client vk: " << request->vk() << std::endl;
+            PoseidonServer poseidonServer;
+            std::cout << "From verifier h: " << h << std::endl;
+            auto if_verify = poseidonServer.verify(request->vk(), request->proof(), h);
+            std::cout << "From verifier if_verify: " << if_verify << std::endl;
+            if (if_verify)
+                reply->set_answer("Verify Success");
+            else
+                reply->set_answer("Verify Fail");
+            inUse = false;
+            return Status::OK;
+        }
         else
-            reply->set_answer("Verify Fail");
-        return Status::OK;
+        {
+            return Status::OK;
+        }
     }
 };
 
@@ -63,10 +72,18 @@ class GreeterVerifierImpl final : public SVGreeter::Service
     Status SVCommunication(ServerContext *context, const SVRequest *request,
                            SVReply *reply) override
     {
-        std::cout << "From server h: " << request->h() << std::endl;
-        h = request->h();
-        randh = request->randh();
-        return Status::OK;
+        if(inUse)
+        {
+            return Status::OK;
+        }
+        else
+        {
+            std::cout << "From server h: " << request->h() << std::endl;
+            h = request->h();
+            randh = request->randh();
+            inUse = true;
+            return Status::OK;
+        }
     }
 };
 
