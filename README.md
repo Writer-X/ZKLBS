@@ -43,3 +43,12 @@
   ./greeterServer 
   ./greeterClient
 ```
+在对接QT之后,客户端运行更改为
+```
+  cd ZKLBS/src/ZKFront
+  mkdir build
+  cmake ..
+  make
+  ./ZKLBS
+```
+
