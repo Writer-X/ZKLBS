@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -Wall -Wno-unused-variable  -shared -Wl,-soname,libethsnarks_verify.so -o libethsnarks_verify.so CMakeFiles/ethsnarks_verify.dir/verify_dll.cpp.o  libethsnarks_common.a ../libff.a -lgmp -lpthread 

@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/test_jubjub_dbl.dir/test_jubjub_dbl.cpp.o -o test_jubjub_dbl  ../../jubjub/libethsnarks_jubjub.a ../../gadgets/libethsnarks_gadgets.a ../../libethsnarks_common.a ../../../libff.a -lgmp -lpthread ../../../depends/libSHA3IUF.a 

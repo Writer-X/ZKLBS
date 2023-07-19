@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/test_field2bits.dir/test_field2bits.cpp.o -o test_field2bits  ../gadgets/libethsnarks_gadgets.a ../libethsnarks_common.a ../../libff.a -lgmp -lpthread ../../depends/libSHA3IUF.a 

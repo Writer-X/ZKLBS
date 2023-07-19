@@ -1,2 +1,0 @@
-/usr/bin/ar qc libSHA3IUF.a CMakeFiles/SHA3IUF.dir/SHA3IUF/sha3.c.o
-/usr/bin/ranlib libSHA3IUF.a

@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/benchmark_pairing.dir/benchmark_pairing.cpp.o -o benchmark_pairing  ../../../libff.a -lgmp 
