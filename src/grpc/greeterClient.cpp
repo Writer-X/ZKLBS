@@ -158,9 +158,9 @@ std::vector<std::string> GreeterClient::RunClient2(std::string pk, std::string l
     return result;
 }
 
-// int main()
-// {
-//     GreeterClient greeterClient;
-//     greeterClient.RunClient();
-//     return 0;
-// }
+int main()
+{
+    GreeterClient greeterClient;
+    greeterClient.RunClient();
+    return 0;
+ }

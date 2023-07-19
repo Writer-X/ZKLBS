@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/benchmark_mpz_mul.dir/benchmark_mpz_mul.cpp.o -o benchmark_mpz_mul  ../../../libff.a -lgmp 

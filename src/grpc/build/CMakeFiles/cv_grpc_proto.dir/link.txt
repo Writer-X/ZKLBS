@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcv_grpc_proto.a CMakeFiles/cv_grpc_proto.dir/Client2Verifier.grpc.pb.cc.o CMakeFiles/cv_grpc_proto.dir/Client2Verifier.pb.cc.o
+/usr/bin/ranlib libcv_grpc_proto.a

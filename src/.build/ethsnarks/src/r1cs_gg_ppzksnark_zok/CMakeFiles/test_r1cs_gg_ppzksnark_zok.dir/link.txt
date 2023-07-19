@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/test_r1cs_gg_ppzksnark_zok.dir/tests/test_r1cs_gg_zok_ppzksnark.cpp.o -o test_r1cs_gg_ppzksnark_zok  ../libethsnarks_common.a ../../libff.a -lgmp -lpthread 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wno-unused-variable  -rdynamic CMakeFiles/pinocchio.dir/main.cpp.o -o pinocchio  libethsnarks_pinocchio.a ../libethsnarks_common.a ../../libff.a -lgmp -lpthread 
