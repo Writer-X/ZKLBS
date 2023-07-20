@@ -8,12 +8,49 @@ add_executable(
 target_link_libraries(
   range
 
-  snark
+  ethsnarks_common
 )
 target_include_directories(
   range
 
   PUBLIC
-  ${DEPENDS_DIR}/libsnark
-  ${DEPENDS_DIR}/libsnark/depends/libfqfft
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+  # ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libff
+)
+
+add_executable(
+  poseidon
+
+  poseidon.cpp
+)
+target_link_libraries(
+  poseidon
+
+  ethsnarks_common
+)
+target_include_directories(
+  poseidon
+
+  PUBLIC
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+)
+
+add_executable(
+  circuit
+
+  circuit.cpp
+)
+target_link_libraries(
+  circuit
+
+  ethsnarks_common
+)
+target_include_directories(
+  circuit
+
+  PUBLIC
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
 )

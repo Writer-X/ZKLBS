@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -Wall -Wextra -Wfatal-errors -pthread -ggdb3 -O2 -march=native -mtune=native -Wall -Wno-unused-variable -ggdb3 -O2 -march=native -mtune=native -rdynamic CMakeFiles/test_r1cs_gg_ppzksnark_zok.dir/tests/test_r1cs_gg_zok_ppzksnark.cpp.o -o test_r1cs_gg_ppzksnark_zok  ../libethsnarks_common.a ../../libff.a -lgmp -lpthread 

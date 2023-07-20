@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(libsnark_abc)
+project(ZKLBS)
 
 set(
   CURVE
@@ -11,7 +11,7 @@ set(
 )
 
 set(
-  DEPENDS_DIR
+  ZKLBS_DEPENDS_DIR
   "${CMAKE_CURRENT_SOURCE_DIR}/depends"
   CACHE
   STRING

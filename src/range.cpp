@@ -104,9 +104,9 @@ void rangeproof(std::pair<long int, long int> coordinate)
     // verify
     bool verified = r1cs_gg_ppzksnark_verifier_strong_IC<default_r1cs_gg_ppzksnark_pp>(keypair.vk, pb.primary_input(), proof);
     
-    cout << "Number of R1CS constraints: " << constraint_system.num_constraints() << endl;
-    cout << "Primary (public) input: " << pb.primary_input() << endl;
-    cout << "Auxiliary (private) input: " << pb.auxiliary_input() << endl;
+    // cout << "Number of R1CS constraints: " << constraint_system.num_constraints() << endl;
+    // cout << "Primary (public) input: " << pb.primary_input() << endl;
+    // cout << "Auxiliary (private) input: " << pb.auxiliary_input() << endl;
     cout << "Verification status: " << verified << endl;
 }
 

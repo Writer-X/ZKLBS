@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -Wall -Wextra -Wfatal-errors -pthread -ggdb3 -O2 -march=native -mtune=native -Wall -Wno-unused-variable -ggdb3 -O2 -march=native -mtune=native -rdynamic CMakeFiles/test_one_of_n.dir/test_one_of_n.cpp.o -o test_one_of_n  ../gadgets/libethsnarks_gadgets.a ../libethsnarks_common.a ../../libff.a -lgmp -lpthread ../../depends/libSHA3IUF.a 

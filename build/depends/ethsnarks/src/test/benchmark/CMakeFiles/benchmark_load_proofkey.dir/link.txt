@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -Wall -Wextra -Wfatal-errors -pthread -ggdb3 -O2 -march=native -mtune=native -Wall -Wno-unused-variable -ggdb3 -O2 -march=native -mtune=native -rdynamic CMakeFiles/benchmark_load_proofkey.dir/benchmark_load_proofkey.cpp.o -o benchmark_load_proofkey  ../../../libff.a -lgmp 

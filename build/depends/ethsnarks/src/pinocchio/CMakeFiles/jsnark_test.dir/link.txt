@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -Wall -Wextra -Wfatal-errors -pthread -ggdb3 -O2 -march=native -mtune=native -Wall -Wno-unused-variable -ggdb3 -O2 -march=native -mtune=native -rdynamic CMakeFiles/jsnark_test.dir/jsnark_test.cpp.o -o jsnark_test  libethsnarks_pinocchio.a ../libethsnarks_common.a ../../libff.a -lgmp -lpthread 

@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -Wall -Wextra -Wfatal-errors -pthread -ggdb3 -O2 -march=native -mtune=native -Wall -Wno-unused-variable -ggdb3 -O2 -march=native -mtune=native -rdynamic CMakeFiles/test_lookup_3bit.dir/test_lookup_3bit.cpp.o -o test_lookup_3bit  ../gadgets/libethsnarks_gadgets.a ../libethsnarks_common.a ../../libff.a -lgmp -lpthread ../../depends/libSHA3IUF.a 

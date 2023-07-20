@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -Wall -Wextra -Wfatal-errors -pthread -ggdb3 -O2 -march=native -mtune=native -rdynamic CMakeFiles/poseidon.dir/poseidon.cpp.o -o poseidon  ../depends/ethsnarks/src/libethsnarks_common.a ../depends/ethsnarks/libff.a -lgmp -lpthread 
