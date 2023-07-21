@@ -1,56 +1,57 @@
-include_directories(.)
+add_subdirectory(circuit)
+# include_directories(.)
 
-add_executable(
-  range
+# add_executable(
+#   range
 
-  range.cpp
-)
-target_link_libraries(
-  range
+#   range.cpp
+# )
+# target_link_libraries(
+#   range
 
-  ethsnarks_common
-)
-target_include_directories(
-  range
+#   ethsnarks_common
+# )
+# target_include_directories(
+#   range
 
-  PUBLIC
-  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
-  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
-  # ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libff
-)
+#   PUBLIC
+#   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+#   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+#   # ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libff
+# )
 
-add_executable(
-  poseidon
+# add_executable(
+#   poseidon
 
-  poseidon.cpp
-)
-target_link_libraries(
-  poseidon
+#   poseidon.cpp
+# )
+# target_link_libraries(
+#   poseidon
 
-  ethsnarks_common
-)
-target_include_directories(
-  poseidon
+#   ethsnarks_common
+# )
+# target_include_directories(
+#   poseidon
 
-  PUBLIC
-  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
-  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
-)
+#   PUBLIC
+#   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+#   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+# )
 
-add_executable(
-  circuit
+# add_executable(
+#   circuit_example
 
-  circuit.cpp
-)
-target_link_libraries(
-  circuit
+#   circuit_example.cpp
+# )
+# target_link_libraries(
+#   circuit_example
 
-  ethsnarks_common
-)
-target_include_directories(
-  circuit
+#   ethsnarks_common
+# )
+# target_include_directories(
+#   circuit_example
 
-  PUBLIC
-  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
-  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
-)
+#   PUBLIC
+#   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+#   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+# )

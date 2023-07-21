@@ -1,1 +1,0 @@
-/usr/bin/cc -rdynamic CMakeFiles/sha3test.dir/SHA3IUF/sha3test.c.o -o sha3test  libSHA3IUF.a 
