@@ -33,11 +33,12 @@ std::string Client::client_to_server(const std::string pk,
     }
 }
 
-std::string Client::client_to_verifier(const std::string vk, const std::string proof)
+std::string Client::client_to_verifier(const std::string vk, const std::string proof, const std::string lev)
 {
     CVRequest request;
     request.set_vk(vk);
     request.set_proof(proof);
+    request.set_lev(lev);
 
     CVReply reply;
     ClientContext context;
@@ -90,7 +91,9 @@ void Client::RunClient()
     Client greeter2(
         grpc::CreateChannel(verifier_address, grpc::InsecureChannelCredentials()));
     
-    std::string vReply = greeter2.client_to_verifier(vk, proof);
+    std::string lev = std::to_string(level);
+    
+    std::string vReply = greeter2.client_to_verifier(vk, proof, lev);
     std::cout << "From verifier reply:" << vReply << std::endl;
 }
 

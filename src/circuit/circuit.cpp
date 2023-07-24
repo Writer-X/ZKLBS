@@ -31,6 +31,7 @@ bool circuit::verify(int level, std::string vk_json, std::string proof_json){
 }
 
 void circuit::make_hash(int x, int y, int time, int pk, int rand){
+    ethsnarks::ppT::init_public_params();
     std::vector<ethsnarks::FieldT> actual = ethsnarks::Poseidon128<5,1>::permute({x, y, time, pk, rand});
     freopen("/tmp/data/hash.txt", "w", stdout);
     auto h = actual[0].as_bigint();
@@ -335,6 +336,7 @@ std::vector<std::string> circuit::make_proof_level4(int x, int y, int time, int 
 }
 
 bool circuit::verify_level1(std::string vk_json, std::string proof_json) {
+    ethsnarks::ppT::init_public_params();
     std::stringstream vk_stream;
     vk_stream << vk_json;
     auto vk = ethsnarks::vk_from_json(vk_stream);
@@ -346,6 +348,7 @@ bool circuit::verify_level1(std::string vk_json, std::string proof_json) {
 }
 
 bool circuit::verify_level2(std::string vk_json, std::string proof_json) {
+    ethsnarks::ppT::init_public_params();
     std::stringstream vk_stream;
     vk_stream << vk_json;
     auto vk = ethsnarks::vk_from_json(vk_stream);
@@ -357,6 +360,7 @@ bool circuit::verify_level2(std::string vk_json, std::string proof_json) {
 }
 
 bool circuit::verify_level3(std::string vk_json, std::string proof_json) {
+    ethsnarks::ppT::init_public_params();
     std::stringstream vk_stream;
     vk_stream << vk_json;
     auto vk = ethsnarks::vk_from_json(vk_stream);
@@ -368,6 +372,7 @@ bool circuit::verify_level3(std::string vk_json, std::string proof_json) {
 }
 
 bool circuit::verify_level4(std::string vk_json, std::string proof_json) {
+    ethsnarks::ppT::init_public_params();
     std::stringstream vk_stream;
     vk_stream << vk_json;
     auto vk = ethsnarks::vk_from_json(vk_stream);

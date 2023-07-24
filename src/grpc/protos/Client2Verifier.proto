@@ -17,6 +17,7 @@ service CVGreeter {
 message CVRequest {
   string vk = 1;
   string proof = 2;
+  string lev = 3;
 }
 
 // The response message containing the greetings

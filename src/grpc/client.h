@@ -29,7 +29,8 @@ public:
                                  const std::string latitude,
                                  const std::string longitude);
     std::string client_to_verifier(const std::string vk, 
-                                   const std::string proof);
+                                   const std::string proof,
+                                   const std::string lev);
     std::string getsRand();
     std::string getsTime();
     void RunClient();

@@ -1,6 +1,6 @@
 include_directories(.)
 
-add_library()(
+add_library(
   circuit
 
   circuit.cpp

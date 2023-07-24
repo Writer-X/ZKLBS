@@ -34,9 +34,11 @@ class GreeterServiceImpl final : public CVGreeter::Service
     {
         std::cout << "From client proof: " << request->proof() << std::endl;
         std::cout << "From client vk: " << request->vk() << std::endl;
+        std::cout << "From client lev: " << request->lev() << std::endl;
 
         circuit c;
-        auto if_verify = c.verify(2, request->vk(), request->proof());
+        int level = stoi(request->lev());
+        auto if_verify = c.verify(level, request->vk(), request->proof());
         std::cout << "From verifier if_verify: " << if_verify << std::endl;
         if (if_verify)
             reply->set_answer("Verify Success");

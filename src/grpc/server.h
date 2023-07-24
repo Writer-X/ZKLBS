@@ -59,7 +59,7 @@ class GreeterServiceImpl final : public CSGreeter::Service
         int iPk = stoi(request->pk());
         int iX = stoi(request->latitude());
         int iY = stoi(request->longitude());
-        int iRand = 123456789;
+        int iRand = 5;
         int iTime = 12;
 
         std::string sRand = std::to_string(iRand);
@@ -67,16 +67,8 @@ class GreeterServiceImpl final : public CSGreeter::Service
         reply->set_rand(sRand);
         reply->set_time(sTime);
 
-        std::cout << "iPk: " << iPk << std::endl;
-        std::cout << "iX: " << iX << std::endl;
-        std::cout << "iY: " << iY << std::endl;
-        std::cout << "iRand: " << iRand << std::endl;
-        std::cout << "iTime: " << iTime << std::endl;
-
         circuit c;
-        std::cout << "Start Make Hash" << std::endl;
         c.make_hash(iX, iY, iTime, iPk, iRand);
-        std::cout << "Finish Make Hash" << std::endl;
 
         // 读取/tmp/data/hash.txt的最后一行
         std::string path = "/tmp/data/hash.txt";
