@@ -1,17 +1,17 @@
 include_directories(.)
 
-add_library()(
-  circuit
+add_executable(
+  test_poseidonHash
 
-  circuit.cpp
+  test_poseidonHash.cpp
 )
 target_link_libraries(
-  circuit
+  test_poseidonHash
 
   ethsnarks_common
 )
 target_include_directories(
-  circuit
+  test_poseidonHash
 
   PUBLIC
   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark

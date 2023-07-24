@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.zklbs.Client2Server";
+option java_outer_classname = "Client2ServerProto";
+option objc_class_prefix = "CS";
+
+package Client2Server;
+
+// The greeting service definition.
+service CSGreeter {
+  // Sends a greeting
+  rpc CSCommunication (CSRequest) returns (CSReply) {}
+}
+
+// The request message containing the user's name.
+message CSRequest {
+  string pk = 1;
+  string latitude = 2;
+  string longitude = 3;
+}
+
+// The response message containing the greetings
+message CSReply {
+  string rand = 1;
+  string time = 2;
+}

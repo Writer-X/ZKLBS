@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.zklbs.Server2Verifier";
+option java_outer_classname = "Server2VerifierProto";
+option objc_class_prefix = "SV";
+
+package Server2Verifier;
+
+// The greeting service definition.
+service SVGreeter {
+  // Sends a greeting
+  rpc SVCommunication (SVRequest) returns (SVReply) {}
+}
+
+// The request message containing the user's name.
+message SVRequest {
+  string h = 1;
+}
+
+// The response message containing the greetings
+message SVReply {
+  string message = 1;
+}

@@ -19,6 +19,14 @@ set(
 )
 
 set(
+  ZKLBS_SRC_DIR
+  "${CMAKE_CURRENT_SOURCE_DIR}/src"
+  CACHE
+  STRING
+  "Optionally specify the source installation directory relative to the source directory (default: inside src folder)"
+)
+
+set(
   OPT_FLAGS
   ""
   CACHE

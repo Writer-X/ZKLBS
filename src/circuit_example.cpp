@@ -13,6 +13,7 @@ void prove(int x, int y, int time, int pk, int rand)
 
     libsnark::pb_variable<ethsnarks::FieldT> tx; 
     libsnark::pb_variable<ethsnarks::FieldT> ty;
+    libsnark::pb_variable<ethsnarks::FieldT> thash;
     libsnark::pb_variable<ethsnarks::FieldT> ix; 
     libsnark::pb_variable<ethsnarks::FieldT> iy;
     // libsnark::pb_variable<ethsnarks::FieldT> itime;
@@ -21,6 +22,7 @@ void prove(int x, int y, int time, int pk, int rand)
 
     tx.allocate(pb, "tx");
     ty.allocate(pb, "ty");
+    thash.allocate(pb, "thash");
 
     ix.allocate(pb, "ix");
     iy.allocate(pb, "iy");
@@ -32,10 +34,12 @@ void prove(int x, int y, int time, int pk, int rand)
     pb.add_r1cs_constraint(libsnark::r1cs_constraint<ethsnarks::FieldT>(ix, 1, tx));
     pb.add_r1cs_constraint(libsnark::r1cs_constraint<ethsnarks::FieldT>(iy, 1, ty));
 
+
     auto inputs = ethsnarks::make_var_array(pb, "input", {x, y, time, pk, rand});
     ethsnarks::Poseidon128<5,1> the_gadget(pb, inputs, "gadget");
     the_gadget.generate_r1cs_constraints();
 
+    pb.add_r1cs_constraint(libsnark::r1cs_constraint<ethsnarks::FieldT>(the_gadget.result(), 1, thash));
     // if( ! pb.is_satisfied() ) {
     //     cout << "Not satisfied" << endl;
     //     return;
@@ -46,6 +50,8 @@ void prove(int x, int y, int time, int pk, int rand)
     
     pb.val(tx) = 116;
     pb.val(ty) = 40;
+    auto actual = ethsnarks::Poseidon128<5,1>::permute({116, 40, 3, 4, 5});
+    pb.val(thash) = actual[0];
 
     pb.val(ix) = x;
     pb.val(iy) = y;
@@ -281,8 +287,8 @@ void prove4(int x, int y, int time, int pk, int rand)
 
 int main()
 {
-//     prove(116, 40, 3, 4, 5);
+    prove(116, 40, 3, 4, 5);
 //     prove2(116, 40, 3, 4, 5);
 //     prove3(116, 40, 3, 4, 5);
-    prove4(117, 41, 3, 4, 5);
+    // prove4(117, 41, 3, 4, 5);
 }
