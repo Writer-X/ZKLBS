@@ -56,6 +56,6 @@ target_include_directories(
   ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
 )
 
-# add_subdirectory(test)
+add_subdirectory(test)
 add_subdirectory(circuit)
 add_subdirectory(grpc)

@@ -1,3 +1,6 @@
 [submodule "depends/ethsnarks"]
 	path = depends/ethsnarks
 	url = https://github.com/HarryR/ethsnarks.git
+[submodule "depends/yaml-cpp"]
+	path = depends/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
