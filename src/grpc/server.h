@@ -2,6 +2,7 @@
 #include <memory>
 #include <string>
 #include <fstream>
+#include <ctime>
 
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
@@ -59,7 +60,8 @@ class GreeterServiceImpl final : public CSGreeter::Service
         int iPk = stoi(request->pk());
         int iX = stoi(request->latitude());
         int iY = stoi(request->longitude());
-        int iRand = 5;
+        srand(time(nullptr));
+        int iRand = rand();
         int iTime = 12;
 
         std::string sRand = std::to_string(iRand);

@@ -128,6 +128,11 @@ std::vector<std::string> circuit::make_proof_level1(int x, int y, int time, int 
     pb.val(r) = r_val;
     pb.val(muxr) = r_val * r_val;
 
+    if (((x - tx_val) * (x - tx_val) + (y - ty_val) * (y - ty_val)) > r_val * r_val)
+    {
+        throw "Can't meet demand";
+    }
+
     std::vector<ethsnarks::FieldT> actual = ethsnarks::Poseidon128<5,1>::permute({x, y, time, pk, rand});
     pb.val(thash) = actual[0];
     the_gadget.generate_r1cs_witness();
@@ -193,6 +198,11 @@ std::vector<std::string> circuit::make_proof_level2(int x, int y, int time, int 
 
     auto primary_input = pb.primary_input();
     auto auxiliary_input = pb.auxiliary_input();
+
+    if (!pb.is_satisfied())
+    {
+        throw "The circuit can't make proof, please make sure the demands are met";
+    }
     auto proof = libsnark::r1cs_gg_ppzksnark_zok_prover<ethsnarks::ppT>(keypair.pk, primary_input, auxiliary_input);
     
     std::string vk_json = ethsnarks::vk2json(keypair.vk);
@@ -255,6 +265,10 @@ std::vector<std::string> circuit::make_proof_level3(int x, int y, int time, int 
 
     auto primary_input = pb.primary_input();
     auto auxiliary_input = pb.auxiliary_input();
+    if (!pb.is_satisfied())
+    {
+        throw "The circuit can't make proof, please make sure the demands are met";
+    }
     auto proof = libsnark::r1cs_gg_ppzksnark_zok_prover<ethsnarks::ppT>(keypair.pk, primary_input, auxiliary_input);
 
     std::string vk_json = ethsnarks::vk2json(keypair.vk);
@@ -324,6 +338,10 @@ std::vector<std::string> circuit::make_proof_level4(int x, int y, int time, int 
 
     auto primary_input = pb.primary_input();
     auto auxiliary_input = pb.auxiliary_input();
+    if (!pb.is_satisfied())
+    {
+        throw "The circuit can't make proof, please make sure the demands are met";
+    }
     auto proof = libsnark::r1cs_gg_ppzksnark_zok_prover<ethsnarks::ppT>(keypair.pk, primary_input, auxiliary_input);
 
     std::string vk_json = ethsnarks::vk2json(keypair.vk);

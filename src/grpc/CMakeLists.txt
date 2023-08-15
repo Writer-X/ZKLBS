@@ -98,7 +98,7 @@ target_link_libraries(sv_grpc_proto
 
 # Targets greeter_[async_](client|server)
 foreach(_target
-client server verifier)
+server verifier)
 add_executable(${_target} "${_target}.cpp")
 target_link_libraries(${_target}
   circuit
@@ -113,5 +113,26 @@ target_include_directories(
 
   PUBLIC
   ${ZKLBS_SRC_DIR}/circuit
+)
+endforeach()
+
+# Targets greeter_[async_](client|server)
+foreach(_target
+client)
+add_library(${_target} "${_target}.cpp")
+target_link_libraries(${_target}
+  circuit
+  cs_grpc_proto
+  cv_grpc_proto
+  sv_grpc_proto
+  ${_REFLECTION}
+  ${_GRPC_GRPCPP}
+  ${_PROTOBUF_LIBPROTOBUF})
+target_include_directories(
+  ${_target}
+
+  PUBLIC
+  ${ZKLBS_SRC_DIR}/circuit
+  # ${ZKLBS_SRC_DIR}/build/src/grpc
 )
 endforeach()

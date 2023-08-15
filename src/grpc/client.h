@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 #include <grpcpp/grpcpp.h>
 
 #include "Client2Server.grpc.pb.h"
@@ -20,6 +21,8 @@ using Client2Verifier::CVGreeter;
 using Client2Verifier::CVRequest;
 using Client2Verifier::CVReply;
 
+using namespace std;
+
 class Client
 {
 public:
@@ -33,9 +36,16 @@ public:
                                    const std::string lev);
     std::string getsRand();
     std::string getsTime();
+
+    void setsPk(std::string spk);
+    void setsX(std::string sx);
+    void setsY(std::string sy);
+    void setlevel(int lev);
+    
     void RunClient();
 
-    std::vector<std::string> RunClient2(std::string pk, std::string lat, std::string lon);
+    std::vector<std::string> run_client_to_server(string spk, string sx, string sy);
+    bool run_client_to_verifier(int lev, string spk, string sx, string sy, string srand, string stime);
 private:
     std::unique_ptr<CSGreeter::Stub> stub_;
     std::unique_ptr<CVGreeter::Stub> cvStub_;

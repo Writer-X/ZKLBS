@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/QSS">
+        <file>myQss.qss</file>
+    </qresource>
+    <qresource prefix="/Image">
+        <file>blackMap.png</file>
+        <file>token.png</file>
+    </qresource>
+</RCC>

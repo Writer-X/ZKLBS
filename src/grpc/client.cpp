@@ -48,7 +48,7 @@ std::string Client::client_to_verifier(const std::string vk, const std::string p
     if (status.ok())
     {
         std::cout << "C2V result: " << reply.answer() << std::endl;
-        return "RPC SUCCESS";
+        return reply.answer();
     }
     else
     {
@@ -65,6 +65,26 @@ std::string Client::getsRand()
 std::string Client::getsTime()
 {
     return sTime;
+}
+
+void Client::setsPk(std::string spk)
+{
+    sPk = spk;
+}
+
+void Client::setsX(std::string sx)
+{
+    sX = sx;
+}
+
+void Client::setsY(std::string sy)
+{
+    sY = sy;
+}
+
+void Client::setlevel(int lev)
+{
+    level = lev;
 }
 
 void Client::RunClient()
@@ -97,9 +117,76 @@ void Client::RunClient()
     std::cout << "From verifier reply:" << vReply << std::endl;
 }
 
-int main()
+std::vector<std::string> Client::run_client_to_server(string spk, string sx, string sy)
 {
-    Client c;
-    c.RunClient();
-    return 0;
+    sPk = spk;
+    sX = sx;
+    sY = sy;
+    std::string server_address = "localhost:50051";
+    Client greeter(
+        grpc::CreateChannel(server_address, grpc::InsecureChannelCredentials()));
+
+    std::string reply = greeter.client_to_server(sPk, sX, sY);
+    std::cout << "From server reply:" << reply << std::endl;
+
+    vector<std::string> result;
+    result.push_back(greeter.getsRand());
+    result.push_back(greeter.getsTime());
+
+    return result;
 }
+
+bool Client::run_client_to_verifier(int lev, string spk, string sx, string sy, string srand, string stime)
+{
+    level = lev;
+    sPk = spk;
+    sX = sx;
+    sY = sy;
+    sRand = srand;
+    sTime = stime;
+    
+    int iX = stoi(sX);
+    int iY = stoi(sY);
+    int iPk = stoi(sPk);
+    int iRand = stoi(sRand);
+    int iTime = stoi(sTime);
+
+    circuit c;
+    std::vector<std::string> result;
+
+    try
+    {
+        result = c.make_proof(level, iX, iY, iTime, iPk, iRand);
+    }
+    catch(...)
+    {
+        return false;
+    }
+    
+    std::string vk = result[0];
+    std::string proof = result[1];
+
+    std::string verifier_address = "localhost:50052";
+    Client greeter2(
+        grpc::CreateChannel(verifier_address, grpc::InsecureChannelCredentials()));
+    
+    std::string slev = std::to_string(level);
+    
+    std::string vReply = greeter2.client_to_verifier(vk, proof, slev);
+    std::cout << "From verifier reply:" << vReply << std::endl;
+
+    if(vReply == "Verify Success")
+    {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+}
+// int main()
+// {
+//     Client c;
+//     c.RunClient();
+//     return 0;
+// }

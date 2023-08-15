@@ -59,3 +59,4 @@ target_include_directories(
 add_subdirectory(test)
 add_subdirectory(circuit)
 add_subdirectory(grpc)
+add_subdirectory(front)

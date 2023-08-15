@@ -36,6 +36,18 @@ class GreeterServiceImpl final : public CVGreeter::Service
         std::cout << "From client vk: " << request->vk() << std::endl;
         std::cout << "From client lev: " << request->lev() << std::endl;
 
+        std::string str = request->proof();
+        int i = str.find_last_of("\"");
+        int j = str.find_last_of("\"", i - 1);
+        std::cout << "Client h: " << str.substr(j + 3, i - j - 3) << std::endl;
+        std::cout << "Server h: " << h << std::endl;
+
+        if(h != str.substr(j + 3, i - j - 3))
+        {
+            reply->set_answer("Verify Fail");
+            return Status::OK;
+        }
+
         circuit c;
         int level = stoi(request->lev());
         auto if_verify = c.verify(level, request->vk(), request->proof());
@@ -53,7 +65,7 @@ class GreeterVerifierImpl final : public SVGreeter::Service
     Status SVCommunication(ServerContext *context, const SVRequest *request,
                            SVReply *reply) override
     {
-        std::cout << "From server h: " << request->h() << std::endl;
+        // std::cout << "From server h: " << request->h() << std::endl;
         h = request->h();
         return Status::OK;
     }
