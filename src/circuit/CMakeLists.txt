@@ -1,11 +1,19 @@
-cmake_minimum_required(VERSION 3.8)
-project(circuit)
+include_directories(.)
 
-add_subdirectory(../../ethsnarks ../../.build/ethsnarks EXCLUDE_FROM_ALL)
+add_library(
+  circuit
 
-add_library(PoseidonClient SHARED PoseidonClient.cpp)
-target_link_libraries(PoseidonClient ethsnarks_common)
+  circuit.cpp
+)
+target_link_libraries(
+  circuit
 
-add_library(PoseidonServer SHARED PoseidonServer.cpp)
-target_link_libraries(PoseidonServer ethsnarks_common)
+  ethsnarks_common
+)
+target_include_directories(
+  circuit
 
+  PUBLIC
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+)

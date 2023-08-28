@@ -1,14 +1,36 @@
-cmake_minimum_required(VERSION 3.8)
-project(test)
+include_directories(.)
 
-add_subdirectory(../circuit ../../.build/circuit EXCLUDE_FROM_ALL)
+add_executable(
+  test_poseidonHash
 
-# add_executable(test_ZKposeidon test_ZKposeidon.cpp)
-# target_link_libraries(test_ZKposeidon PoseidonClient)
-# target_link_libraries(test_ZKposeidon PoseidonServer)
+  test_poseidonHash.cpp
+)
+target_link_libraries(
+  test_poseidonHash
 
-# add_executable(test_coordinate test_coordinate.cpp)
-# target_link_libraries(test_coordinate curl)
-# add_executable(test_thread test_thread.cpp)
+  ethsnarks_common
+)
+target_include_directories(
+  test_poseidonHash
 
-add_executable(test_type test_type.cpp)
+  PUBLIC
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark
+  ${ZKLBS_DEPENDS_DIR}/ethsnarks/depends/libsnark/depends/libfqfft
+)
+
+add_executable(
+  test_readYaml
+
+  test_readYaml.cpp
+)
+target_link_libraries(
+  test_readYaml
+
+  yaml-cpp
+)
+target_include_directories(
+  test_readYaml
+
+  PUBLIC
+  ${ZKLBS_DEPENDS_DIR}/yaml-cpp/include
+)

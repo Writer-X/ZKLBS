@@ -1,8 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
-
-project(ZKLBS)
-
-include(cmake/common.cmake)
+include(common.cmake)
 
 get_filename_component(cs_proto "protos/Client2Server.proto" ABSOLUTE)
 get_filename_component(cs_proto_path "${cs_proto}" PATH)
@@ -12,6 +8,7 @@ set(cs_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/Client2Server.pb.cc")
 set(cs_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/Client2Server.pb.h")
 set(cs_grpc_srcs "${CMAKE_CURRENT_BINARY_DIR}/Client2Server.grpc.pb.cc")
 set(cs_grpc_hdrs "${CMAKE_CURRENT_BINARY_DIR}/Client2Server.grpc.pb.h")
+
 add_custom_command(
       OUTPUT "${cs_proto_srcs}" "${cs_proto_hdrs}" "${cs_grpc_srcs}" "${cs_grpc_hdrs}"
       COMMAND ${_PROTOBUF_PROTOC}
@@ -22,10 +19,8 @@ add_custom_command(
         "${cs_proto}"
       DEPENDS "${cs_proto}")
 
-# Include generated *.pb.h files
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
-# hw_grpc_proto
 add_library(cs_grpc_proto
   ${cs_grpc_srcs}
   ${cs_grpc_hdrs}
@@ -38,7 +33,7 @@ target_link_libraries(cs_grpc_proto
 
 get_filename_component(cv_proto "protos/Client2Verifier.proto" ABSOLUTE)
 get_filename_component(cv_proto_path "${cv_proto}" PATH)
-
+  
 # Generated sources
 set(cv_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/Client2Verifier.pb.cc")
 set(cv_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/Client2Verifier.pb.h")
@@ -53,11 +48,11 @@ add_custom_command(
         --plugin=protoc-gen-grpc="${_GRPC_CPP_PLUGIN_EXECUTABLE}"
         "${cv_proto}"
       DEPENDS "${cv_proto}")
-
+  
 # Include generated *.pb.h files
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
-
-# hw_grpc_proto
+  
+  # hw_grpc_proto
 add_library(cv_grpc_proto
   ${cv_grpc_srcs}
   ${cv_grpc_hdrs}
@@ -70,7 +65,7 @@ target_link_libraries(cv_grpc_proto
 
 get_filename_component(sv_proto "protos/Server2Verifier.proto" ABSOLUTE)
 get_filename_component(sv_proto_path "${sv_proto}" PATH)
-
+  
 # Generated sources
 set(sv_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/Server2Verifier.pb.cc")
 set(sv_proto_hdrs "${CMAKE_CURRENT_BINARY_DIR}/Server2Verifier.pb.h")
@@ -88,7 +83,7 @@ add_custom_command(
 
 # Include generated *.pb.h files
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
-
+ 
 # hw_grpc_proto
 add_library(sv_grpc_proto
   ${sv_grpc_srcs}
@@ -100,43 +95,44 @@ target_link_libraries(sv_grpc_proto
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF})
 
-add_subdirectory(../circuit ../../.build/circuit EXCLUDE_FROM_ALL)
-add_subdirectory(../utils ../../.build/utils EXCLUDE_FROM_ALL)
-  
+
 # Targets greeter_[async_](client|server)
 foreach(_target
-greeterServer greeterVerifier)
+server verifier)
 add_executable(${_target} "${_target}.cpp")
 target_link_libraries(${_target}
-  PoseidonClient
-  PoseidonServer
-  CoordinateUtil
-  TimeUtil
-  TypeUtil
-  RandomUtil
+  circuit
   cs_grpc_proto
   cv_grpc_proto
   sv_grpc_proto
   ${_REFLECTION}
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF})
+target_include_directories(
+  ${_target}
+
+  PUBLIC
+  ${ZKLBS_SRC_DIR}/circuit
+)
 endforeach()
 
 # Targets greeter_[async_](client|server)
 foreach(_target
-greeterClient)
+client)
 add_library(${_target} "${_target}.cpp")
 target_link_libraries(${_target}
-  PoseidonClient
-  PoseidonServer
-  CoordinateUtil
-  TimeUtil
-  TypeUtil
-  RandomUtil
+  circuit
   cs_grpc_proto
   cv_grpc_proto
   sv_grpc_proto
   ${_REFLECTION}
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF})
+target_include_directories(
+  ${_target}
+
+  PUBLIC
+  ${ZKLBS_SRC_DIR}/circuit
+  # ${ZKLBS_SRC_DIR}/build/src/grpc
+)
 endforeach()

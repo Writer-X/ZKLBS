@@ -1,9 +1,6 @@
-[submodule "TARGET_FOLDER"]
-	path = TARGET_FOLDER
+[submodule "depends/ethsnarks"]
+	path = depends/ethsnarks
 	url = https://github.com/HarryR/ethsnarks.git
-[submodule "ethsnarks"]
-	path = ethsnarks
-	url = https://github.com/HarryR/ethsnarks.git
-[submodule "grpc"]
-	path = grpc
-	url = https://github.com/grpc/grpc.git
+[submodule "depends/yaml-cpp"]
+	path = depends/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
